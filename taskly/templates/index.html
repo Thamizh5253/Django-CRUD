@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table , th , tr , td {
+            width: 50%;
+            border-collapse: collapse;  
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Taskly</h1>
+    <h5> Your Task will be Recorded here Free Your Brain and Freeze your Procastination</h5>
+    <p> We are in under development</p>
+    <a href="{% url 'create_task' %}">Create Task</a>
+    <br>
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th colspan="2">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in data %}
+                <tr>
+                    <td>{{i.title}}</td>
+                    <td>{{i.date}}</td>
+                    <td>{{i.status}}</td>
+                    <td><a href="{% url 'update_task' i.id %}">Update</a></td>
+                    <td><a href="{% url 'delete_task' i.id %}">Delete</a></td>
+
+                </tr>
+            {% endfor %}
+        </tbody>
+</table>
+</body>
+</html>
+
+{% include 'base.html' %}
